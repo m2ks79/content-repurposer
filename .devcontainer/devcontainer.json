@@ -1,0 +1,43 @@
+{
+  "name": "Content Repurposer",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11-bullseye",
+  "features": {
+    "ghcr.io/devcontainers/features/node:latest": {
+      "version": "18"
+    },
+    "ghcr.io/devcontainers/features/github-cli:latest": {}
+  },
+  "postCreateCommand": "make setup",
+  "forwardPorts": [5000, 5173, 6379],
+  "portsAttributes": {
+    "5000": {
+      "label": "Backend API",
+      "onAutoForward": "notify"
+    },
+    "5173": {
+      "label": "Frontend (Vite)",
+      "onAutoForward": "notify"
+    },
+    "6379": {
+      "label": "Redis",
+      "onAutoForward": "ignore"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "ms-vscode.makefile-tools"
+      ],
+      "settings": {
+        "python.linting.enabled": true,
+        "python.linting.pylintEnabled": true,
+        "python.formatting.provider": "black",
+        "editor.formatOnSave": true
+      }
+    }
+  }
+}
